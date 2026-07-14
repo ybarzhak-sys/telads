@@ -1,0 +1,92 @@
+/* Kiss My Apps — Tailwind v4 theme block
+ * Drop into your main stylesheet that imports Tailwind:
+ *   @import "tailwindcss";
+ *   @import "./tokens.tailwind.css";
+ */
+
+@theme {
+  /* Raw palette (fixed brand colors) */
+  --color-kma-black:        oklch(0.230 0.004 286);
+  --color-kma-white:        oklch(0.962 0.000 0);
+  --color-kma-paper:        oklch(0.945 0.005 80);   /* alternating-section cream */
+  --color-kma-gray-25:      oklch(0.892 0.002 286);
+  --color-kma-gray-40:      oklch(0.770 0.012 280);
+  --color-kma-gray-60:      oklch(0.819 0.010 270);
+
+  --color-kma-blueberry:      oklch(0.642 0.191 271.4);
+  --color-kma-emerald:        oklch(0.779 0.196 144.2);
+  --color-kma-blueberry-dark: oklch(0.341 0.090 272.5);
+  --color-kma-emerald-dark:   oklch(0.409 0.096 144.3);
+
+  --color-kma-light-blue:      oklch(0.804 0.119 232.7);
+  --color-kma-purple:          oklch(0.696 0.182 296.6);
+  --color-kma-pink:            oklch(0.762 0.168 350.8);
+  --color-kma-red:             oklch(0.706 0.186 23.1);
+  --color-kma-orange:          oklch(0.829 0.145 73.5);
+  --color-kma-yellow:          oklch(0.926 0.184 102.4);
+  --color-kma-violet-app:      oklch(0.621 0.183 286.6);
+  --color-kma-light-blue-dark: oklch(0.486 0.069 232.8);
+  --color-kma-purple-dark:     oklch(0.425 0.104 296.9);
+  --color-kma-pink-dark:       oklch(0.462 0.097 350.3);
+  --color-kma-red-dark:        oklch(0.429 0.107 22.7);
+  --color-kma-orange-dark:     oklch(0.502 0.084 74.6);
+  --color-kma-yellow-dark:     oklch(0.556 0.108 102.2);
+
+  /* Semantic surfaces — default dark; overridden below for light */
+  --color-kma-surface:          oklch(0.230 0.004 286); /* same as black */
+  --color-kma-surface-elevated: oklch(0.30  0.006 286);
+  --color-kma-text:             oklch(0.962 0.000 0);
+  --color-kma-text-muted:       oklch(0.892 0.002 286);
+  --color-kma-border:           oklch(0.32  0.006 286);
+  --color-kma-accent:           oklch(0.779 0.196 144.2); /* Emerald */
+  --color-kma-accent-fg:        oklch(0.230 0.004 286);   /* dark text on Emerald */
+  --color-kma-accent-inline:    oklch(0.779 0.196 144.2);
+  --color-kma-accent-2:         oklch(0.642 0.191 271.4); /* Blueberry */
+  --color-kma-accent-2-inline:  oklch(0.642 0.191 271.4);
+
+  --font-sans:    "book", Arial, Helvetica, sans-serif;
+  --font-display: "heavy", Arial, Helvetica, sans-serif;
+
+  --radius-sharp: 1px;
+  --radius-pill:  9999px;
+  --radius-xs:  0.5rem;
+  --radius-sm:  1rem;
+  --radius-md:  1.5rem;
+  --radius-lg:  2rem;
+  --radius-xl:  3rem;
+  --radius-2xl: 4rem;
+
+  --transition-duration-fast: 300ms;
+  --transition-duration-mid:  600ms;
+  --transition-duration-slow: 1200ms;
+  --transition-timing-kma:    cubic-bezier(0.85, 0, 0.15, 1);
+  --transition-timing-quart:  cubic-bezier(0.16, 1, 0.30, 1);
+}
+
+/* Light theme — explicit opt-in */
+[data-theme="light"] {
+  --color-kma-surface:          oklch(0.962 0.000 0);
+  --color-kma-surface-elevated: oklch(0.99 0.002 286);
+  --color-kma-text:             oklch(0.230 0.004 286);
+  --color-kma-text-muted:       oklch(0.50  0.006 286);
+  --color-kma-border:           oklch(0.770 0.012 280);
+  --color-kma-accent-inline:    oklch(0.409 0.096 144.3); /* Emerald-dark on light bodies */
+  --color-kma-accent-2-inline:  oklch(0.341 0.090 272.5); /* Blueberry-dark on light bodies */
+  color-scheme: light;
+}
+
+/* Follow system preference when no explicit theme set */
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]):not([data-theme="light"]) {
+    --color-kma-surface:          oklch(0.962 0.000 0);
+    --color-kma-surface-elevated: oklch(0.99 0.002 286);
+    --color-kma-text:             oklch(0.230 0.004 286);
+    --color-kma-text-muted:       oklch(0.50  0.006 286);
+    --color-kma-border:           oklch(0.770 0.012 280);
+    --color-kma-accent-inline:    oklch(0.409 0.096 144.3);
+    --color-kma-accent-2-inline:  oklch(0.341 0.090 272.5);
+    color-scheme: light;
+  }
+}
+
+[data-theme="dark"] { color-scheme: dark; }

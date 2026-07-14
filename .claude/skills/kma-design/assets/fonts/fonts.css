@@ -1,0 +1,47 @@
+/* Stolzl — KMA web font faces.
+ *
+ * "book"  family: body weights 350 / 400 / 500 / 700.
+ * "heavy" family: display weight at 400 (renders as Stolzl Heavy).
+ *
+ * Drop next to tokens.css and import:  @import "./assets/fonts/fonts.css";
+ */
+
+@font-face {
+  font-family: "book";
+  font-weight: 350;
+  font-style: normal;
+  font-display: swap;
+  src: url("./Stolzl-Book.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "book";
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  src: url("./Stolzl-Regular.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "book";
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+  src: url("./Stolzl-Medium.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "book";
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  src: url("./Stolzl-Bold.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "heavy";
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  src: url("./heavy.woff2") format("woff2");
+}

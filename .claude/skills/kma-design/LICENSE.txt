@@ -1,0 +1,5 @@
+Kiss My Apps Design System — Claude Skill
+Copyright (c) 2026 Kiss My Apps.
+
+Stolzl font files in assets/fonts/ are commercially licensed to KMA.
+Use them only on KMA brand surfaces.

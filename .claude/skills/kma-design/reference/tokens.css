@@ -1,0 +1,176 @@
+/* Kiss My Apps — design tokens (CSS custom properties)
+ * Drop into a global stylesheet or :root layer.
+ * Color values in OKLCH for math; HEX comments are source-of-truth.
+ *
+ * Fonts: this stylesheet expects "book" and "heavy" font-families to be
+ * loaded. The matching font files ship alongside this skill at
+ * ../assets/fonts/{regular,book-medium,heavy}.woff2 with @font-face
+ * declarations in ../assets/fonts/fonts.css. Import that file first,
+ * or inline the @font-face blocks into your global stylesheet.
+ */
+
+@import "../assets/fonts/fonts.css";
+
+:root {
+  /* Neutrals */
+  --kma-black:     oklch(0.230 0.004 286);  /* #1E1E20 */
+  --kma-white:     oklch(0.962 0.000 0);    /* #F5F5F5 */
+  --kma-paper:     oklch(0.945 0.005 80);   /* ≈#EFEEE7 — warm cream for alternating-section panels */
+  --kma-gray-25:   oklch(0.892 0.002 286);  /* #DFDFE0 */
+  --kma-gray-40:   oklch(0.770 0.012 280);  /* #BBBCC4 */
+  --kma-gray-60:   oklch(0.819 0.010 270);  /* #C8CAD0 */
+
+  /* Primary brand */
+  --kma-blueberry:      oklch(0.642 0.191 271.4);  /* #657FFF */
+  --kma-emerald:        oklch(0.779 0.196 144.2);  /* #58D65E */
+  --kma-blueberry-dark: oklch(0.341 0.090 272.5);  /* #293366 */
+  --kma-emerald-dark:   oklch(0.409 0.096 144.3);  /* #245726 */
+
+  /* Per-page accent (default Emerald) */
+  --section-color: var(--kma-emerald);
+
+  /* Secondary (use situationally only) */
+  --kma-light-blue:      oklch(0.804 0.119 232.7);  /* #66CCFF */
+  --kma-purple:          oklch(0.696 0.182 296.6);  /* #AA80FF */
+  --kma-pink:            oklch(0.762 0.168 350.8);  /* #FF80BF */
+  --kma-red:             oklch(0.706 0.186 23.1);   /* #FF6767 */
+  --kma-orange:          oklch(0.829 0.145 73.5);   /* #FFB74D */
+  --kma-yellow:          oklch(0.926 0.184 102.4);  /* #FFEA30 */
+  --kma-violet-app:      oklch(0.621 0.183 286.6);  /* #927DFF */
+  --kma-light-blue-dark: oklch(0.486 0.069 232.8);  /* #336680 */
+  --kma-purple-dark:     oklch(0.425 0.104 296.9);  /* #554080 */
+  --kma-pink-dark:       oklch(0.462 0.097 350.3);  /* #804060 */
+  --kma-red-dark:        oklch(0.429 0.107 22.7);   /* #803333 */
+  --kma-orange-dark:     oklch(0.502 0.084 74.6);   /* #805C26 */
+  --kma-yellow-dark:     oklch(0.556 0.108 102.2);  /* #807518 */
+
+  /* Type */
+  --kma-font-sans:    "book", Arial, Helvetica, sans-serif;
+  --kma-font-display: "heavy", Arial, Helvetica, sans-serif;
+  --kma-fs-a1:  clamp(4rem, 7vw + 1rem, 7rem);          /* 64 – 112 px */
+  --kma-fs-h1:  clamp(2.5rem, 3vw + 1rem, 4.5rem);      /* 40 – 72 px  */
+  --kma-fs-h3:  clamp(1.75rem, 1vw + 1rem, 2.5rem);     /* 28 – 40 px  */
+  --kma-fs-b1:  clamp(1.125rem, 0.25vw + 1rem, 1.5rem); /* 18 – 24 px  */
+  --kma-fs-tag: 1rem;                                   /* 16 px       */
+  --kma-lh-tight: 0.92;
+  --kma-lh-h1:    1.00;
+  --kma-lh-snug:  1.20;
+  --kma-lh-body:  1.40;
+  --kma-ls-display: -0.02em;
+  --kma-ls-tag:      0.04em;
+
+  /* Radius */
+  --kma-radius-sharp: 1px;
+  --kma-radius-pill:  9999px;
+  --kma-radius-xs:    0.5rem;
+  --kma-radius-sm:    1rem;
+  --kma-radius-md:    1.5rem;
+  --kma-radius-lg:    2rem;
+  --kma-radius-xl:    3rem;
+  --kma-radius-2xl:   4rem;
+
+  /* Grid + spacing */
+  --kma-grid-margin: 2.22rem;
+  --kma-grid-gutter: 0.56rem;
+  --kma-nav-h:       3.89rem;
+  --kma-space-1:  0.25rem;
+  --kma-space-2:  0.5rem;
+  --kma-space-3:  0.75rem;
+  --kma-space-4:  1rem;
+  --kma-space-6:  1.5rem;
+  --kma-space-8:  2rem;
+  --kma-space-12: 3rem;
+  --kma-space-16: 4rem;
+  --kma-space-24: 6rem;
+
+  /* Motion */
+  --kma-ease:           cubic-bezier(0.85, 0, 0.15, 1);
+  --kma-ease-out-quart: cubic-bezier(0.16, 1, 0.30, 1);
+  --kma-dur-fast: 0.3s;
+  --kma-dur-mid:  0.6s;
+  --kma-dur-slow: 1.2s;
+  --kma-dur-hero: 2.0s;
+}
+
+/* ----------------------------------------------------------------------
+ * Semantic theme tokens
+ *
+ * The raw color palette above (kma-black, kma-white, kma-emerald, ...) is
+ * fixed. The semantic tokens below swap between dark and light themes.
+ *
+ * Theme selection:
+ *   <html data-theme="dark">  → force dark
+ *   <html data-theme="light"> → force light
+ *   <html>                    → follow prefers-color-scheme
+ *
+ * Hero / landing / campaign pages should set [data-theme="dark"] explicitly.
+ * Long-form / careers detail / terms / partner-deck pages should set
+ * [data-theme="light"] explicitly or let prefers-color-scheme drive it.
+ * See design-system.md §3 for the full decision matrix.
+ * --------------------------------------------------------------------- */
+
+/* Default: dark (matches the live marketing site) */
+:root {
+  --kma-surface:           var(--kma-black);
+  --kma-surface-elevated:  oklch(0.30 0.006 286);
+  --kma-surface-paper:     var(--kma-paper);             /* alternating-section panels (metric / marquee) */
+  --kma-text:              var(--kma-white);
+  --kma-text-on-paper:     var(--kma-black);             /* text inside paper panels */
+  --kma-text-muted:        var(--kma-gray-25);
+  --kma-border:            oklch(0.32 0.006 286);
+  --kma-accent:            var(--kma-emerald);
+  --kma-accent-fg:         var(--kma-black);             /* text on Emerald plate */
+  --kma-accent-inline:     var(--kma-emerald);           /* inline accent on body */
+  --kma-accent-inline-light: var(--kma-emerald-dark);    /* inline accent on paper or light body */
+  --kma-accent-2:          var(--kma-blueberry);         /* secondary accent */
+  --kma-accent-2-inline:   var(--kma-blueberry);
+  --kma-accent-2-inline-light: var(--kma-blueberry-dark);
+  color-scheme: dark;
+}
+
+/* Light theme — explicit opt-in */
+[data-theme="light"] {
+  --kma-surface:           var(--kma-white);
+  --kma-surface-elevated:  oklch(0.99 0.002 286);
+  --kma-text:              var(--kma-black);
+  --kma-text-muted:        oklch(0.50 0.006 286);
+  --kma-border:            var(--kma-gray-40);
+  --kma-accent:            var(--kma-emerald);           /* CTA stays Emerald */
+  --kma-accent-fg:         var(--kma-black);             /* CTA text stays dark */
+  --kma-accent-inline:     var(--kma-emerald-dark);      /* pure Emerald too light on white */
+  --kma-accent-2:          var(--kma-blueberry);
+  --kma-accent-2-inline:   var(--kma-blueberry-dark);
+  color-scheme: light;
+}
+
+/* Follow system preference when no explicit theme is set */
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]):not([data-theme="light"]) {
+    --kma-surface:           var(--kma-white);
+    --kma-surface-elevated:  oklch(0.99 0.002 286);
+    --kma-text:              var(--kma-black);
+    --kma-text-muted:        oklch(0.50 0.006 286);
+    --kma-border:            var(--kma-gray-40);
+    --kma-accent-inline:     var(--kma-emerald-dark);
+    --kma-accent-2-inline:   var(--kma-blueberry-dark);
+    color-scheme: light;
+  }
+}
+
+html, body {
+  background: var(--kma-surface);
+  color: var(--kma-text);
+  font-family: var(--kma-font-sans);
+  font-size: var(--kma-fs-b1);
+  line-height: var(--kma-lh-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
